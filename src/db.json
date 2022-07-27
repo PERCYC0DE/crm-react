@@ -1,0 +1,20 @@
+{
+  "clients": [
+    {
+      "name": "Mateo",
+      "company": "Mateo SAC",
+      "email": "mateo@correo.com",
+      "phone": "944323454",
+      "notes": "Cliente desea una página web",
+      "id": 1
+    },
+    {
+      "name": "Daniela",
+      "company": "Danipao",
+      "email": "danipao@gmail.com",
+      "phone": "922418232",
+      "notes": "Cliente solicita administración de sus redes sociales",
+      "id": 2
+    }
+  ]
+}
