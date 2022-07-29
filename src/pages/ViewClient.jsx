@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const ViewClient = () => {
   const { id } = useParams();
   const [client, setClient] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getClientById = async () => {
@@ -16,11 +18,18 @@ const ViewClient = () => {
       } catch (error) {
         console.log(error);
       }
+      setTimeout(() => {
+        setLoading(!loading);
+      }, 1000);
     };
     getClientById();
   }, []);
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : Object.keys(client).length === 0 ? (
+    <p>No hay resultados</p>
+  ) : (
     <div>
       <h1 className="font-blac text-4xl text-blue-900">Detalle del Cliente</h1>
       <p className="text-xl text-gray-700 mt-10">

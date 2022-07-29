@@ -3,8 +3,9 @@ import { Formik, Form, Field } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import MessageAlert from "./MessageAlert";
+import Spinner from "./Spinner";
 
-const FormRegister = () => {
+const FormRegister = ({ client, loading }) => {
   const navigate = useNavigate();
 
   // Schema of Data
@@ -26,38 +27,55 @@ const FormRegister = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const url = "http://localhost:4000/clients";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      const result = await response.json();
+      let response;
+      if (client) {
+        // Editar registro
+        const url = `http://localhost:4000/clients/${client.id}`;
+        response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+      } else {
+        // Nuevo registro
+        const url = "http://localhost:4000/clients";
+        response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+      }
+      await response.json();
       navigate("/clients");
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div
       className="bg-white mt-10 px-5 py-10 rounded-md shadow-md
-            md:w-3/4 mx-auto"
+        md:w-3/4 mx-auto"
     >
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center">
-        Agregar Cliente
+        {client?.name ? "Editar cliente" : "Agregar cliente"}
       </h1>
 
       <Formik
         initialValues={{
-          name: "",
-          company: "",
-          email: "",
-          phone: "",
-          notes: "",
+          name: client?.name ?? "",
+          company: client?.company ?? "",
+          email: client?.email ?? "",
+          phone: client?.phone ?? "",
+          notes: client?.notes ?? "",
         }}
+        enableReinitialize={true} // Vuelve a ejecutar el componente y tomara los valores del initialValues
         validationSchema={newClientSchema}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
@@ -74,6 +92,7 @@ const FormRegister = () => {
                 <Field
                   id="name"
                   type="text"
+                  placeholder="Nombre del cliente"
                   className="mt-2 block w-full p-3 bg-gray-200"
                   name="name"
                 />
@@ -88,6 +107,7 @@ const FormRegister = () => {
                 <Field
                   id="company"
                   type="text"
+                  placeholder="Nombre de la empresa"
                   className="mt-2 block w-full p-3 bg-gray-200"
                   name="company"
                 />
@@ -102,6 +122,7 @@ const FormRegister = () => {
                 <Field
                   id="email"
                   type="tel"
+                  placeholder="ejemplo@correo.com"
                   className="mt-2 block w-full p-3 bg-gray-200"
                   name="email"
                 />
@@ -113,6 +134,7 @@ const FormRegister = () => {
                 <Field
                   id="phone"
                   type="tel"
+                  placeholder="Ejemplo: 911 123 123"
                   className="mt-2 block w-full p-3 bg-gray-200"
                   name="phone"
                 />
@@ -125,6 +147,7 @@ const FormRegister = () => {
                   as="textarea"
                   id="notes"
                   type="text"
+                  placeholder="Notas sobre el cliente"
                   className="mt-2 block w-full p-3 bg-gray-200 h-40"
                   name="notes"
                 />
@@ -132,7 +155,7 @@ const FormRegister = () => {
               <input
                 type="submit"
                 // value={cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}
-                value={"Enviar"}
+                value={client?.name ? "Editar cliente" : "Agregar cliente"}
                 className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"
               />
             </Form>
@@ -141,6 +164,12 @@ const FormRegister = () => {
       </Formik>
     </div>
   );
+};
+
+// Utilizando los default Props para que los tome como valores iniciales al agregar nuevo cliente
+Form.defaultProps = {
+  client: {},
+  loading: false,
 };
 
 export default FormRegister;
