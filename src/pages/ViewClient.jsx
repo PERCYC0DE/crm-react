@@ -13,7 +13,6 @@ const ViewClient = () => {
         const url = `http://localhost:4000/clients/${id}`;
         const response = await fetch(url);
         const result = await response.json();
-        console.log(result);
         setClient(result);
       } catch (error) {
         console.log(error);

@@ -17,13 +17,10 @@ const EditClient = () => {
       } catch (error) {
         console.log(error);
       }
-
       setLoading(!loading);
     };
     getClientById();
   }, []);
-
-  console.log(loading);
 
   return (
     <>

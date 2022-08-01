@@ -19,6 +19,25 @@ const Home = () => {
     getClientsAPI();
   }, []);
 
+  const handleDeleteClient = async (id) => {
+    const confirmated = confirm("¿Deseas eliminar este cliente?");
+    if (confirmated) {
+      try {
+        const url = `http://localhost:4000/clients/${id}`;
+        const response = await fetch(url, {
+          method: "DELETE",
+        });
+        await response.json();
+
+        // Los clientes estan en el state asi que tenemos que actualizarlo quitando el que hemos eliminado
+        const arrayClients = clients.filter((client) => client.id !== id); // .filter no muta el array original
+        setClients(arrayClients);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <>
       <h1 className="font-blac text-4xl text-blue-900">Clientes</h1>
@@ -35,7 +54,11 @@ const Home = () => {
         </thead>
         <tbody>
           {clients.map((client) => (
-            <Client key={client.id} client={client} />
+            <Client
+              key={client.id}
+              client={client}
+              handleDeleteClient={handleDeleteClient}
+            />
           ))}
         </tbody>
       </table>

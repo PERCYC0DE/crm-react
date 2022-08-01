@@ -1,14 +1,6 @@
 {
   "clients": [
     {
-      "name": "Mateito",
-      "company": "Mateo SAC",
-      "email": "mateo@correo.com",
-      "phone": "944323454",
-      "notes": "Cliente desea una página webs",
-      "id": 1
-    },
-    {
       "name": "Daniela Valencia",
       "company": "Danipaos",
       "email": "danipao@gmail.com",

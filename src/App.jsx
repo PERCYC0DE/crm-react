@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./layout/Login";
 import Layout from "./layout/Layout";
 import Home from "./pages/Home";
@@ -15,6 +15,7 @@ function App() {
         {/* <Route path="/" element={<Login />}>
           <Route index element={<LoginForm />} />
         </Route> */}
+        <Route path="*" element={<Navigate to={"/clients"} replace />} />
         <Route path="/clients" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="new" element={<NewClient />} />
