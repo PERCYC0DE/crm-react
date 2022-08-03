@@ -1,3 +1,3 @@
 # CRM REACT
 
-CRM example built on React and JSON Server
+CRM example basic built on React and JSON Server for server data.

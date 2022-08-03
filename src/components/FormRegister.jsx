@@ -30,7 +30,7 @@ const FormRegister = ({ client, loading }) => {
       let response;
       if (client) {
         // Editar registro
-        const url = `http://localhost:4000/clients/${client.id}`;
+        const url = `${import.meta.VITE_API_URL}/${client.id}`;
         response = await fetch(url, {
           method: "PUT",
           headers: {
