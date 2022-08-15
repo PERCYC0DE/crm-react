@@ -1,28 +1,36 @@
 {
   "clients": [
     {
-      "name": "Daniela Valencia",
-      "company": "Danipaos",
-      "email": "danipao@gmail.com",
-      "phone": "922418232",
+      "name": "Ryan Lienhart Dahl",
+      "company": "Node",
+      "email": "ryan@node.com",
+      "phone": "9878988890",
       "notes": "Cliente solicita administración de sus redes sociales",
       "id": 2
     },
     {
-      "name": "Percy Tejada",
-      "company": "PercyCode",
-      "email": "soporte@rubenibanez.es",
-      "phone": "922418232",
-      "notes": "s",
+      "name": "Jordan Walke",
+      "company": "React",
+      "email": "jordan@react.com",
+      "phone": "987111098",
+      "notes": "Cliente solicita una página web",
       "id": 3
     },
     {
       "name": "Percy Tejada",
       "company": "PercyCode",
-      "email": "soporte@rubenibanez.es",
-      "phone": "944323454",
-      "notes": "ssss",
+      "email": "contact@ppjcode.com",
+      "phone": "908878766",
+      "notes": "Solicita cotización para desarrollo de aplicación móvil",
       "id": 4
+    },
+    {
+      "name": "Dwight Merriman",
+      "company": "MongoDB",
+      "email": "merriman@mongo.com",
+      "phone": "+56 908989 898",
+      "notes": "Solicita implementar una base de datos",
+      "id": 5
     }
   ]
 }

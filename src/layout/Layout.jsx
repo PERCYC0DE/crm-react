@@ -1,28 +1,30 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-
+import Logo from "../assets/logo2.png";
 const Layout = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
   return (
     <div className="md:flex md:min-h-screen">
-      <div className="md:w-1/4 bg-blue-800 px-5 py-10">
-        <h2 className="text-2xl font-black text-center text-white">
-          CRM Clientes
-          <nav className="mt-10">
+      <div className="md:w-1/4 bg-colorSecondary px-5 py-10">
+        <h2 className="text-xl text-center text-white">
+          <div>
+            <img src={Logo} alt="" />
+          </div>
+          <nav className="mt-10 text-left uppercase font-openSans">
             <Link
               to="/clients"
               className={`${
-                currentPath === "/clients" ? "text-blue-300" : "text-white"
-              } text-white text-lg block mt-2 hover:text-blue-300`}
+                currentPath === "/clients" ? "text-white" : "text-slate-600"
+              } text-white block mt-2 hover:text-blue-300`}
             >
               Clientes
             </Link>
             <Link
               to="/clients/new"
               className={`${
-                currentPath === "/clients/new" ? "text-blue-300" : "text-white"
+                currentPath === "/clients/new" ? "text-white" : "text-slate-600"
               } text-white text-lg block mt-2 hover:text-blue-300`}
             >
               Nuevo Cliente

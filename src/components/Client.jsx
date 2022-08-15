@@ -7,19 +7,19 @@ const Client = ({ client, handleDeleteClient }) => {
   const { name, company, email, phone, notes, id } = client;
   return (
     <tr className="border-b hover:bg-gray-50">
-      <td className="p-3">{name}</td>
-      <td className="p-3">
-        <p>
-          <span className="text-gray-800 font-bold">Email:</span>
-          {email}
-        </p>
-        <p>
-          <span className="text-gray-800 font-bold">Tel:</span>
-          {phone}
-        </p>
+      <td className="p-2">{name}</td>
+      <td className="p-2">
+        <div className="flex">
+          <p className="text-gray-800 font-bold w-3/12">Email:</p>
+          <p>{email}</p>
+        </div>
+        <div className="flex">
+          <p className="text-gray-800 font-bold w-3/12">Telefono:</p>
+          <p>{phone}</p>
+        </div>
       </td>
-      <td className="p-3">{company}</td>
-      <td className="p-3">
+      <td className="p-2">{company}</td>
+      <td className="p-2">
         <button
           type="button"
           className="bg-yellow-600 hover:bg-yellow-700 block w-full text-white p-2 uppercase font-bold text-xs"

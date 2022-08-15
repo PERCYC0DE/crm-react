@@ -10,7 +10,7 @@ const ViewClient = () => {
   useEffect(() => {
     const getClientById = async () => {
       try {
-        const url = `${import.meta.VITE_API_URL}/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${id}`;
         const response = await fetch(url);
         const result = await response.json();
         setClient(result);
@@ -30,28 +30,30 @@ const ViewClient = () => {
     <p>No hay resultados</p>
   ) : (
     <div>
-      <h1 className="font-blac text-4xl text-blue-900">Detalle del Cliente</h1>
-      <p className="text-xl text-gray-700 mt-10">
-        <span className="uppercase font-bold text-gray-800">Cliente:</span>{" "}
-        {client.name}
-      </p>
-      <p className="text-xl text-gray-700 mt-3">
-        <span className="uppercase font-bold text-gray-800">Email:</span>{" "}
-        {client.email}
-      </p>
-      <p className="text-xl text-gray-700 mt-3">
-        <span className="uppercase font-bold text-gray-800">Telefono:</span>{" "}
-        {client.phone}
-      </p>
-      <p className="text-xl text-gray-700 mt-3">
-        <span className="uppercase font-bold text-gray-800">Empresa:</span>{" "}
-        {client.company}
-      </p>
+      <h1 className="font-blac text-3xl text-colorSecondary uppercase">
+        Detalle del Cliente
+      </h1>
+      <div className="flex items-start mt-10 border-b-2">
+        <p className="uppercase font-bold text-gray-800 w-2/12">Cliente:</p>
+        <p className="text-gray-700"> {client.name}</p>
+      </div>
+      <div className="flex items-start mt-2 border-b-2">
+        <p className="uppercase font-bold text-gray-800 w-2/12">Email:</p>
+        <p className="text-gray-700">{client.email}</p>
+      </div>
+      <div className="flex items-start mt-2 border-b-2">
+        <p className="uppercase font-bold text-gray-800 w-2/12">Telefono:</p>
+        <p className="text-gray-700">{client.phone}</p>
+      </div>
+      <div className="flex items-start mt-2 border-b-2">
+        <p className="uppercase font-bold text-gray-800 w-2/12">Empresa:</p>
+        <p className="text-gray-700">{client.company}</p>
+      </div>
       {client.notes && (
-        <p className="text-xl text-gray-700 mt-3">
-          <span className="uppercase font-bold text-gray-800">Notas:</span>{" "}
-          {client.notes}
-        </p>
+        <div className="flex items-start mt-2 border-b-2">
+          <p className="uppercase font-bold text-gray-800 w-2/12">Notas:</p>
+          <p className=" text-gray-700">{client.notes}</p>
+        </div>
       )}
     </div>
   );

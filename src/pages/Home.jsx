@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     const getClientsAPI = async () => {
       try {
-        const url = import.meta.VITE_API_URL;
+        const url = import.meta.env.VITE_API_URL;
         const response = await fetch(url);
         const result = await response.json();
         setClients(result);
@@ -23,7 +23,7 @@ const Home = () => {
     const confirmated = confirm("¿Deseas eliminar este cliente?");
     if (confirmated) {
       try {
-        const url = `${import.meta.VITE_API_URL}/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${id}`;
         const response = await fetch(url, {
           method: "DELETE",
         });
@@ -40,16 +40,18 @@ const Home = () => {
 
   return (
     <>
-      <h1 className="font-blac text-4xl text-blue-900">Clientes</h1>
-      <p className="mt-3">Administra tus clientes</p>
+      <h1 className="font-black text-3xl text-colorSecondary uppercase font-openSans">
+        Clientes
+      </h1>
+      <p className="mt-3 italic font-openSans">Administra tus clientes</p>
 
       <table className="w-full mt-5 table-auto shadow bg-white">
-        <thead className="bg-blue-800 text-white">
+        <thead className="bg-colorSecondary text-white">
           <tr>
-            <th className="p-2">Nombre</th>
-            <th className="p-2">Contacto</th>
-            <th className="p-2">Empresa</th>
-            <th className="p-2">Acciones</th>
+            <th className="py-1 border">Nombre</th>
+            <th className="py-1 border">Contacto</th>
+            <th className="py-1 border">Empresa</th>
+            <th className="py-1 border">Acciones</th>
           </tr>
         </thead>
         <tbody>
